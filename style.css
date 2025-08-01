@@ -1,0 +1,240 @@
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+:root {
+    --color-bg-dark: #0F172A; /* Azul noite quase preto */
+    --color-bg-light: #1E293B; /* Azul ardósia */
+    --color-glass: rgba(30, 41, 59, 0.5); /* Cor do vidro com transparência */
+    --color-border: rgba(56, 189, 248, 0.2); /* Borda com transparência */
+    --color-text-light: #F8FAFC;
+    --color-text-medium: #94A3B8;
+    --color-accent: #38BDF8; /* Azul céu vibrante */
+    
+    --font-family: 'Poppins', sans-serif;
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--color-bg-dark);
+    background-image: radial-gradient(circle at top left, #1E293B, var(--color-bg-dark) 40%);
+    color: var(--color-text-light);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* HEADER COM LOGO */
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+}
+.logo-container img {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--color-accent);
+    background-color: var(--color-bg-light);
+}
+.header-text h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+}
+.header-text p {
+    font-size: 1.1rem;
+    color: var(--color-text-medium);
+}
+
+/* SEARCH */
+.search-container {
+    margin-bottom: 3rem;
+}
+#search-input {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background-color: var(--color-glass);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    color: var(--color-text-light);
+    font-size: 1rem;
+    font-family: var(--font-family);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+#search-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.1);
+}
+
+/* EVENTS CONTAINER */
+.month-group {
+    animation: fadeIn 0.5s ease-out both;
+}
+.month-group h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-light);
+}
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.event-card {
+    position: relative;
+    background: var(--color-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.5s ease-out both;
+}
+.event-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+}
+.event-card::before { /* Efeito de brilho no hover */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    box-shadow: inset 0 0 0 2px transparent;
+    transition: box-shadow 0.3s ease;
+}
+.event-card:hover::before {
+    box-shadow: inset 0 0 0 2px var(--color-accent);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+.card-header .date {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-accent);
+}
+.card-header .date-icon {
+    width: 10px; height: 10px; background-color: var(--color-accent); border-radius: 2px; flex-shrink: 0;
+}
+.card-header h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-light);
+}
+
+.card-details {
+    font-size: 0.9rem;
+    color: var(--color-text-medium);
+    margin-bottom: 1.25rem;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--color-border);
+}
+.card-details div { margin-bottom: 0.25rem; }
+.card-details span { color: var(--color-text-light); font-weight: 500; }
+
+.card-tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+}
+.tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 15px;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-medium);
+    border: 1px solid var(--color-border);
+}
+
+/* FOOTER */
+.main-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+}
+.main-footer p { color: var(--color-text-medium); }
+.main-footer .credits { font-size: 0.9rem; margin-top: 0.25rem; }
+
+/* MODAL */
+.modal-backdrop {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; z-index: 1000;
+}
+.modal-backdrop.visible { opacity: 1; visibility: visible; }
+.modal-content {
+    background-color: var(--color-bg-light); border: 1px solid var(--color-border);
+    padding: 2rem; border-radius: 16px; width: 90%; max-width: 550px;
+    transform: scale(0.95); transition: transform 0.3s ease;
+}
+.modal-backdrop.visible .modal-content { transform: scale(1); }
+.modal-header {
+    display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+}
+#modal-date { font-size: 1.5rem; color: var(--color-accent); font-weight: 600; }
+.close-btn { background: none; border: none; font-size: 2.5rem; cursor: pointer; color: var(--color-text-medium); line-height: 1; }
+
+.modal-body h3 { font-size: 1.5rem; color: var(--color-text-light); margin-bottom: 0.75rem; }
+.modal-body p { font-size: 1rem; line-height: 1.7; color: var(--color-text-medium); }
+
+/* --- RESPONSIVIDADE PARA CELULAR --- */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+    .page-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    .logo-container img {
+        height: 70px;
+        width: 70px;
+    }
+    .header-text h1 {
+        font-size: 1.8rem;
+    }
+    .header-text p {
+        font-size: 1rem;
+    }
+    .events-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas pequenas */
+    }
+    #search-input {
+        padding: 0.8rem 1rem;
+    }
+    .month-group h2 {
+        font-size: 1.5rem;
+    }
+}
